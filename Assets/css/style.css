@@ -2,6 +2,8 @@
     font-family: Helvetica, sans-serif;
 }
 
+/* BODY CONTAINER AND BACKGROUND IMAGE */
+
 body {
     background-image: url(https://i.picsum.photos/id/481/1440/1024.jpg?hmac=71iHLhDeYiAm-kOYSpwKxVMad7nDJjc-WiQr1h50Lmw);
     background-repeat: no-repeat;
@@ -108,14 +110,16 @@ button {
     height: auto;
 }
 
+/* BROWSER FALLBACK FOR NON SUPPORTED CSS BLUR */
+
 @supports (backdrop-filter: none) {
-	.bg-light {
+	.bg-container {
 		backdrop-filter: blur(12px)!important;
 	}
 }
 
 @supports not (backdrop-filter: none) {
-  .bg-light {
+  .bg-container {
     background-color: white !important;
   }
 }
@@ -137,6 +141,8 @@ h2 {
     text-align: left;
     color: #27386D;
 }
+
+/* SEARCH HISTORY LIST */
 
 ul {
     padding-right: 16px;
@@ -187,8 +193,9 @@ li:last-child {
     line-height: 48px;
 }
 
-
 /* RIGHT CONTAINER */
+
+/* HEADER ELEMENTS */
 
 .right-container-header {
     background-color: white;
@@ -213,13 +220,20 @@ li:last-child {
 .date-text {
     font-size: 20px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 700;
     line-height: 55px;
     letter-spacing: -0.02em;
     text-align: right;
     color: #27386D;
     padding-left: 20px;
 }
+
+#weather-icon {
+    height: 50px;
+    width: 50px;
+}
+
+/* CURRENT WEATHER INFORMATION */
 
 .weather-info {
     font-size: 20px;
@@ -255,6 +269,8 @@ li:last-child {
     padding-left: 20px;
     padding-bottom: 20px;
 }
+
+/* SEMANTIC BADGES FOR UV RANGE */
 
 .weather-info-badge-positive {
     font-size: 20px;
@@ -311,7 +327,7 @@ li:last-child {
 }
     
 
-/* RIGHT CONTAINER */
+/* FORECAST CARDS */
 
 .day-card-container{
     padding-left: 20px;
@@ -346,10 +362,4 @@ li:last-child {
     font-weight: 300;
     margin: 0;
 }
-
-#weather-icon {
-    height: 50px;
-    width: 50px;
-}
-
 
