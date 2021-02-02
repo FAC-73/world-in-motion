@@ -63,6 +63,7 @@ input[type=text] {
     padding-right: 20px;
 }
 
+
 form {
     background-color: #27386D;
     height: 56px;
@@ -257,6 +258,60 @@ li:last-child {
     padding-bottom: 20px;
 }
 
+.weather-info-badge-positive {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    background-color: rgb(40, 133, 40);
+    border-radius: 4px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+    }
+
+.weather-info-badge-warning {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    background-color: #E48C34;
+    border-radius: 4px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+    }
+
+    .weather-info-badge-danger {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    background-color: rgb(160, 4, 4);
+    border-radius: 4px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+    }
+    
 
 /* RIGHT CONTAINER */
 

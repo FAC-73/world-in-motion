@@ -1,4 +1,3 @@
-
 // store api key
 const apiKey = "a292350487a9c686dbf7401ea7f2d780";
 
@@ -9,7 +8,6 @@ function getWeather(city) {
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   var imageURL = `url(https://picsum.photos/1440/1024?${city})`;
   // var locationAPI = `http://api.ipstack.com/${IP}?access_key=${apiKeyLocation}`;
-
 
 
   // Fetch api data
@@ -27,13 +25,14 @@ function getWeather(city) {
       $("#temp").text("Temperature: " + data.main.temp + " °F");
 
       // Create image element to pass image data into
-      var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+      var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
       // Add image element to document
       $("#weather-icon").append(img);
 
       // Show hidden elements
       $("#icon-div").show();
       $("#forecast").show();
+      $("#date").show();
 
       // Add list items and pass search result name 
       var listItem = $("<li>").addClass("list-item-text").text(city);
@@ -44,6 +43,9 @@ function getWeather(city) {
 
       // Dynamically update background image using lorem picsum api
       $("#imagebg").css({ 'background-image': imageURL });
+
+      getForecast(city);
+      UVIndex(data.coord.lat, data.coord.lon);
 
     });
 }
@@ -84,7 +86,7 @@ function getForecast(city) {
           const cardBody = $("<div>").addClass("card-body");
 
           // create variables for generating html elements and css classes, replace text with API data for 5 day forecast
-          const cityDate = $("<h3>").addClass("card-date").text(new Date().toLocaleDateString());
+          const cityDate = $("<h3>").addClass("card-date").text(new Date(results[i].dt_txt).toLocaleDateString());
           const temperature = $("<p>").addClass("card-details").text("Temp: " + results[i].main.temp_max + " °F");
           const humidity = $("<p>").addClass("card-details").text("Humidity: " + results[i].main.humidity + "%");
           const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + results[i].weather[0].icon + ".png");
@@ -99,64 +101,54 @@ function getForecast(city) {
     });
 }
 
+// Create function for UV index data
+function UVIndex(lat, lon) {
+  var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
 
-// function UVIndex(lat, lon) {
-//   var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+  // Fetch data from api
+  fetch(queryURL)
+    .then(function (data) {
+      return data.json();
+    })
 
-//   fetch(queryURL)
-//     .then(function (data) {
-//       return data.json();
-//     })
+    // Create variables and define html element targets to pass data to
+    .then(function (data) {
+      var uv = $("#UV").text("UV Index: ");
+      var badge = $("<span>").addClass("weather-info-badge-positive").text(data.value);
 
-//     .then(function (data) {
-//       var uv = $("<p>").text("UV Index: ");
-//       var btn = $("<span>").addClass("btn btn-sm").text(data.value);
+      // if else statements for setting badge color for UV index
+      if (data.value < 3) {
+        badge.addClass("weather-info-badge-positive");
+      }
+      else if (data.value < 7) {
+        badge.addClass("weather-info-badge-warning");
+      }
+      else {
+        badge.addClass("weather-info-badge-danger");
+      }
 
-//       // change color depending on uv value
-//       if (data.value < 3) {
-//         btn.addClass("btn-success");
-//       }
-//       else if (data.value < 7) {
-//         btn.addClass("btn-warning");
-//       }
-//       else {
-//         btn.addClass("btn-danger");
-//       }
-
-//       $("#today .card-body").append(uv.append(btn));
-//     }
-
-//     bodyEl.appendChild(uvEl);
-//     uvEl.appendChild(buttonEl);
-//   }
-// }); 
-
-      // getForecast(city);
-      // UVIndex(data.coord.lat, data.coord.lon);  
-
-
-
-
-
-
-
-
+      // add elemenets to html document
+      $("#UV .weather-info").append(uv.append(badge));
+    });
+}
 
 // load document
 $(document).ready(function () {
-  
+
   // $(window).load(function() {
   //  $("#search-term").text(locationAPI.city);
   // });
 
   $("#icon-div").hide();
   $("#forecast").hide();
-  $("#date").text(new Date().toLocaleDateString());
+  $("#date").hide();
+  // $("#current-weather-content").hide();
 
-
-  // Submit search
+  // event listener on submission of form - enter or click
   document.querySelector("#search-form").addEventListener("submit", function (e) {
+    // prevent clearing of input after submission
     e.preventDefault();
+    // create variable to store string from input
     let cityFromInput = document.querySelector("#search-term").value;
     // console.log(city)
     getWeather(cityFromInput);
@@ -190,11 +182,11 @@ $(document).ready(function () {
 
 //  append the cards and add to html - done
 
-//  get UV index from api - TO DO 
+//  get UV index from api - done
 
-// change color depending on value - TO DO
+// change color depending on value - done
 
-// append to html - TO DO
+// append to html - done
 
 // store items into localStorage with links - TO DO
 
