@@ -1,15 +1,14 @@
 
 // store api key
 const apiKey = "a292350487a9c686dbf7401ea7f2d780";
-const apiKeyLocation = "163c496ec85c53827d879a780f2fb408"
-const IP =''
+
 
 // Function for current weather
 function getWeather(city) {
   // getWeather using api and parameters, get background image based on api and search parameters
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   var imageURL = `url(https://picsum.photos/1440/1024?${city})`;
-  var locationAPI = `http://api.ipstack.com/${IP}?access_key=${apiKeyLocation}`;
+  // var locationAPI = `http://api.ipstack.com/${IP}?access_key=${apiKeyLocation}`;
 
 
 
@@ -162,7 +161,6 @@ $(document).ready(function () {
     // console.log(city)
     getWeather(cityFromInput);
     getForecast(cityFromInput);
-    
   });
 
 });
