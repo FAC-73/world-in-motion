@@ -190,16 +190,9 @@ li:last-child {
     line-height: 48px;
 }
 
-.button-list {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    text-align: left;
-    line-height: 48px;
-    border-style: none;
-    background: none;
-    width: 100%;
+li:hover {
+    cursor: pointer;
+    font-weight: 400;
 }
 
 /* RIGHT CONTAINER */
