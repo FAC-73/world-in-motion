@@ -14,7 +14,7 @@ function rendercityHistory() {
   listItem.innerHTML = "";
   cityHistoryCount.textContent = "cities " + "(" + cityHistory.length + ")";
 
-  // adds it to the HTML document
+  // For loop to generate the new item
   for (var i = 0; i < cityHistory.length; i++) {
     var cities = cityHistory[i];
 
@@ -45,7 +45,7 @@ function storecityHistory() {
 
 // Function for current weather
 function getWeather(city) {
-  // getWeather using api and parameters, get background image based on api and search parameters
+  // getWeather using api and parameters, get background image based on api and search parameters using template literals
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   var imageURL = `url(https://picsum.photos/1440/1024?${city})`;
 
