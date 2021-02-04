@@ -19,7 +19,7 @@ function rendercityHistory() {
     var cities = cityHistory[i];
 
     // creates the rows and content for city history list, sets text to the city name
-    var li = document.createElement("li");
+    var li = document.createElement("li");   
     li.textContent = cities;
 
     // adds it to the HTML document
@@ -34,7 +34,7 @@ function init() {
   if (storedcityHistory !== null) {
     cityHistory = storedcityHistory;
   }
-  // Run function if there are items in localStorage
+
   rendercityHistory();
 }
 
@@ -184,7 +184,6 @@ $(document).ready(function () {
   $("#humidity").hide();
   $("#UV").hide();
   // Set text on load
-  $("#currentCity").text("There is no such thing as bad weather, only different kinds of good weather.");
   $("#temp").text(" - John Ruskin");
 
   // event listener on submission of form - enter or click
@@ -196,7 +195,7 @@ $(document).ready(function () {
     // console.log(city)
     getWeather(cityFromInput);
     getForecast(cityFromInput);
-
+    
     var citiesSearched = inputCity.value.trim();
     if (citiesSearched === "") {
       return;
@@ -215,10 +214,8 @@ $(document).ready(function () {
   init()
 
   // Event handler for searching from search history list
-  $("li").on("click", function () {
+  $("li").on("click", function() {
     getWeather($(this).text());
-    // Add pointer style on hover to show its a clickable item
-    $("li").css('cursor', 'pointer');
   });
-
+  
 });
