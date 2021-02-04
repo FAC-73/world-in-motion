@@ -3,7 +3,7 @@ Weather dashboard that leverages 3rd party API data that will run in the browser
 
 
 
-![Weather Dashboard](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/Calendar.png?raw=true "Weather Dashboard")
+![Weather Dashboard](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/WeatherDashboard-animation.png?raw=true "Weather Dashboard")
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -34,7 +34,7 @@ Weather dashboard that leverages 3rd party API data that will run in the browser
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Jquery and Javascript Workday Planner](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/initialScreen.png?raw=true "Jquery and Javascript Workday Planner")
+![Weather Dashboard](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Initial-load-screen.png?raw=true "Weather Dashboard")
 <br><br>
 
 **Built using Javascript, Jquery, HTML, CSS and leveraging a 3rd party API from OpenWeather. This Weather Dashboard application provides allows users to search for a city and pull the current weather and the 5-day-forecast using the OpenWeather API. Past city searches are stored using localStorage and displayed in a list. Clicking the city displays the information again**
@@ -74,7 +74,7 @@ To get a local copy up and running follow these simple steps. You can also downl
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-![Jquery and Javascript Workday Planner](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/Calendar.png?raw=true  "Jquery and Javascript Workday Planner")
+![Weather Dashboard](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/WeatherDashboard-animation.png?raw=true  "Weather Dashboard")
 
 #### What's included
 1. HTML, CSS and Javascript (incl. Jquery) files include the source code for running the Weather Dashboard Application
@@ -86,7 +86,7 @@ To get a local copy up and running follow these simple steps. You can also downl
 #### Included functionality
 1. The weather dashboard includes a search input for querying weather by city. It also displays the current weather for the location, as well as the UV index. A 5 day forecast is displayed using a dynamic javascript card array. 
 
-![Day planner list](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/initialScreen.png?raw=true "Day planner list")
+![Day planner list](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Initial-load-screen.png?raw=true "Day planner list")
 <br>
 
 2. Each row is color coded. Pink denotes the current hour of the day, Teal represents hours left/upcoming. Gray represents time elapsed/passed.
