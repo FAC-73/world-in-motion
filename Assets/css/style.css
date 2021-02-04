@@ -77,7 +77,7 @@ form {
     margin-right: 20px;
 }
 
-button {
+.input-button {
     height: 56px;
     background: none;
     border-style: none;
@@ -151,10 +151,16 @@ ul {
 }
 
 li {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    text-align: left;
     color: #27386D;
     border-bottom: 1px solid #c2c2c2;
     height: 48px;
     list-style: none;
+    line-height: 48px;
 }
 
 li:first-child {

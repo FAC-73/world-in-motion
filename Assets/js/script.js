@@ -1,16 +1,56 @@
 // store api key
 const apiKey = "a292350487a9c686dbf7401ea7f2d780";
 
+// variables for creating list elements and for storing array for saved cities
+var inputCity = document.querySelector("#search-term");
+var formInput = document.querySelector("#search-form");
+var listItem = document.querySelector("#cities-list");
+var cityHistoryCount = document.querySelector("#cities-count");
+var cityHistory = [];
+
+
+// The following function renders items in a cities list as <li> elements
+function rendercityHistory() {
+  listItem.innerHTML = "";
+  cityHistoryCount.textContent = "cities " + "(" + cityHistory.length + ")";
+
+  // adds it to the HTML document
+  for (var i = 0; i < cityHistory.length; i++) {
+    var cities = cityHistory[i];
+
+    // creates the rows and content for city history list
+    var li = document.createElement("li");
+    // var listAction = document.createElement("button");
+    li.textContent = cities;
+
+    // adds it to the HTML document
+    listItem.appendChild(li);
+    // li.appendChild(listAction);
+  }
+}
+
+// Function to get stored item from JSON
+function init() {
+  var storedcityHistory = JSON.parse(localStorage.getItem("cityHistory"));
+  if (storedcityHistory !== null) {
+    cityHistory = storedcityHistory;
+  }
+
+  rendercityHistory();
+}
+
+// Function to store item in JSON
+function storecityHistory() {
+  window.localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+}
 
 // Function for current weather
 function getWeather(city) {
   // getWeather using api and parameters, get background image based on api and search parameters
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   var imageURL = `url(https://picsum.photos/1440/1024?${city})`;
-  // var locationAPI = `http://api.ipstack.com/${IP}?access_key=${apiKeyLocation}`;
 
-
-  // Fetch api data
+  // Fetch api data 
   fetch(queryURL)
     .then(function (data) {
       return data.json();
@@ -34,9 +74,9 @@ function getWeather(city) {
       $("#forecast").show();
       $("#date").show();
 
-      // Add list items and pass search result name 
-      var listItem = $("<li>").addClass("list-item-text").text(city);
-      $("#cities-list").append(listItem);
+      // // // Add list items and pass search result name 
+      // var listItem = $("<li>").addClass("list-item-text").text(city);
+      // $("#cities-list").append(listItem);
 
       // Set date for current weather
       $("#date").text(new Date().toLocaleDateString());
@@ -52,9 +92,10 @@ function getWeather(city) {
 
 // Create function for 5 day forecast
 function getForecast(city) {
-  // getWeather using api and parameters
+  // getForecast using api and parameters
   var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
 
+  // Fetch data from api
   fetch(queryURL)
     .then(function (data) {
       return data.json();
@@ -66,12 +107,12 @@ function getForecast(city) {
       console.log(data.dt);
       $('#card-array').empty();
 
-      // variable to hold data.list
+      // variable to hold data.list from api
       let results = data.list;
       console.log(results)
 
-      //declare start date to check against
-      //have end date, endDate = startDate + 5
+      //Set start date and check against it
+      //set end date endDate = startDate + 5
       for (let i = 0; i < results.length; i++) {
 
         let day = Number(results[i].dt_txt.split('-')[2].split(' ')[0]);
@@ -135,10 +176,7 @@ function UVIndex(lat, lon) {
 // load document
 $(document).ready(function () {
 
-  // $(window).load(function() {
-  //  $("#search-term").text(locationAPI.city);
-  // });
-
+  // hide non-required elements
   $("#icon-div").hide();
   $("#forecast").hide();
   $("#date").hide();
@@ -153,41 +191,32 @@ $(document).ready(function () {
     // console.log(city)
     getWeather(cityFromInput);
     getForecast(cityFromInput);
+
+    var citiesSearched = inputCity.value.trim();
+    if (citiesSearched === "") {
+      return;
+    }
+
+    cityHistory.push(citiesSearched);
+    inputCity.value = "";
+
+    storecityHistory();
+    rendercityHistory();
+
   });
 
+  // document.querySelector("button").addEventListener("click", function(e)) {
+  //   var element = event.target;
+
+  //   if (element.matches("button") === true) {
+  //     var cities = innerHTML.parentElement;
+  //   }
+
+  //   storecityHistory();
+  //   rendercityHistory();
+  // }
+
+  // // Calls init to retrieve data and render it to the page on load
+  init()
+
 });
-
-
-
-
-
-
-
-
-
-
-// make the list using add - done
-
-// append the list to the webpage - done
-
-// create HTML content for current weather - done
-
-// append the content to the html - done
-
-// Get weather forecast, loop over in 3 hour increments - done
-
-// function for creating the date - done
-
-//  create html for cards - done 
-
-//  append the cards and add to html - done
-
-//  get UV index from api - done
-
-// change color depending on value - done
-
-// append to html - done
-
-// store items into localStorage with links - TO DO
-
-// Add event listener - Done
