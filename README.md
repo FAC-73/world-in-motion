@@ -99,17 +99,17 @@ To get a local copy up and running follow these simple steps. You can also downl
 
 4. Weather for the current day is is displayed in the p tags within the main container. Data from the API is passed into the p tag with the correct ID corresponding to the data type. i.e Wind speed, Humidity, Temperature.
 
-![Pre-defined event](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/initialScreen.png?raw=true "Pre-defined event")
+![Current weather](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/casablanca.png?raw=true "Current weather")
 <br>
 
 5. UV Index information is displayed in a semantically colored badge to represent low levels in green vs. high levels in red
 
-![Add/update event](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/FocusAhead.png?raw=true "Add/update event")
+![UV Badge](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/capeTown.png?raw=true"UV Badge")
 <br>
 
 6. A 5 day forcast is dynamically displayed in a list of 5 cards. Each card includes an icon, a date, temperature and humidity details. 
 
-![Save changes](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/saveUpdatePrompt.png?raw=true "Save changes")
+![Save changes](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/history-list.png?raw=true "Save changes")
 <br>
 
 7. If the user leaves the page, refreshes or closes the browser. On subsequent reload the events are stored and shown when the page has loaded. 
@@ -141,7 +141,7 @@ Semantic html is used for elements such as header, text elements.
 
 
 #### Responsive view example - On mobile
-![Responsive layout](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Mobile1.png?raw=true "Responsive views")
+![Responsive layout](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/responsive.png?raw=true "Responsive views")
 
 
 
