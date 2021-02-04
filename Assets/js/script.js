@@ -18,14 +18,13 @@ function rendercityHistory() {
   for (var i = 0; i < cityHistory.length; i++) {
     var cities = cityHistory[i];
 
-    // creates the rows and content for city history list
-    var li = document.createElement("li");
-    // var listAction = document.createElement("button");
+    // creates the rows and content for city history list, sets text to the city name
+    var li = document.createElement("li");   
     li.textContent = cities;
 
     // adds it to the HTML document
     listItem.appendChild(li);
-    // li.appendChild(listAction);
+
   }
 }
 
@@ -66,6 +65,7 @@ function getWeather(city) {
 
       // Create image element to pass image data into
       var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+
       // Add image element to document
       $("#weather-icon").append(img);
 
@@ -73,10 +73,9 @@ function getWeather(city) {
       $("#icon-div").show();
       $("#forecast").show();
       $("#date").show();
-
-      // // // Add list items and pass search result name 
-      // var listItem = $("<li>").addClass("list-item-text").text(city);
-      // $("#cities-list").append(listItem);
+      $("#wind").show();
+      $("#humidity").show();
+      $("#UV").show();
 
       // Set date for current weather
       $("#date").text(new Date().toLocaleDateString());
@@ -84,6 +83,7 @@ function getWeather(city) {
       // Dynamically update background image using lorem picsum api
       $("#imagebg").css({ 'background-image': imageURL });
 
+      // Run functions for forecast and UV index using city name variable and variable with data for co-ordinates
       getForecast(city);
       UVIndex(data.coord.lat, data.coord.lon);
 
@@ -102,7 +102,7 @@ function getForecast(city) {
     })
     .then(function (data) {
 
-      // loop over all forecasts (by 3-hour increments)
+      // loop over all forecasts using 3 hour increments
       console.log(data);
       console.log(data.dt);
       $('#card-array').empty();
@@ -180,7 +180,10 @@ $(document).ready(function () {
   $("#icon-div").hide();
   $("#forecast").hide();
   $("#date").hide();
-  // $("#current-weather-content").hide();
+  $("#wind").hide();
+  $("#humidity").hide();
+  $("#UV").hide();
+  $("#temp").text(" - John Ruskin");
 
   // event listener on submission of form - enter or click
   document.querySelector("#search-form").addEventListener("submit", function (e) {
@@ -191,32 +194,29 @@ $(document).ready(function () {
     // console.log(city)
     getWeather(cityFromInput);
     getForecast(cityFromInput);
-
+    
     var citiesSearched = inputCity.value.trim();
     if (citiesSearched === "") {
       return;
     }
 
+    // Function to add to history list
     cityHistory.push(citiesSearched);
     inputCity.value = "";
 
+    // Run function for adding to localStorage
     storecityHistory();
     rendercityHistory();
 
   });
 
-  // document.querySelector("button").addEventListener("click", function(e)) {
-  //   var element = event.target;
-
-  //   if (element.matches("button") === true) {
-  //     var cities = innerHTML.parentElement;
-  //   }
-
-  //   storecityHistory();
-  //   rendercityHistory();
-  // }
-
-  // // Calls init to retrieve data and render it to the page on load
   init()
 
+  // Event handler for searching from search history list
+  $("li").on("click", function() {
+    getWeather($(this).text());
+    // Add pointer style on hover to show its a clickable item
+    $("li").css( 'cursor', 'pointer' );
+  });
+  
 });
