@@ -104,7 +104,6 @@ function getForecast(city) {
 
       // loop over all forecasts using 3 hour increments
       console.log(data);
-      console.log(data.dt);
       $('#card-array').empty();
 
       // variable to hold data.list from api
@@ -185,11 +184,13 @@ $(document).ready(function () {
   $("#UV").hide();
   // Set text on load
   $("#temp").text(" - John Ruskin");
+  $("#currentCity").text("There is no such thing as bad weather, only different kinds of good weather.");
 
-  // event listener on submission of form - enter or click
+  // event listener on submission of form
   document.querySelector("#search-form").addEventListener("submit", function (e) {
     // prevent clearing of input after submission
     e.preventDefault();
+
     // create variable to store string from input
     let cityFromInput = document.querySelector("#search-term").value;
     // console.log(city)
@@ -200,12 +201,11 @@ $(document).ready(function () {
     if (citiesSearched === "") {
       return;
     }
-
     // Function to add to history list
     cityHistory.push(citiesSearched);
     inputCity.value = "";
 
-    // Run function for adding to localStorage
+    // Run functions for adding to localStorage & displaying search history
     storecityHistory();
     rendercityHistory();
 
@@ -213,9 +213,9 @@ $(document).ready(function () {
 
   init()
 
-  // Event handler for searching from search history list
-  $("li").on("click", function() {
-    getWeather($(this).text());
-  });
-  
+      // Event handler for searching from search history list
+      $("li").on("click", function() {
+        getWeather($(this).text());
+      });
+
 });
