@@ -104,7 +104,7 @@ To get a local copy up and running follow these simple steps. You can also downl
 
 5. UV Index information is displayed in a semantically colored badge to represent low levels in green vs. high levels in red
 
-![UV Badge](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/capeTown.png?raw=true"UV Badge")
+![UV Badge](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/capeTown.png?raw=true "UV Badge")
 <br>
 
 6. A 5 day forcast is dynamically displayed in a list of 5 cards. Each card includes an icon, a date, temperature and humidity details. 
