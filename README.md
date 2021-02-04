@@ -86,30 +86,28 @@ To get a local copy up and running follow these simple steps. You can also downl
 #### Included functionality
 1. The weather dashboard includes a search input for querying weather by city. It also displays the current weather for the location, as well as the UV index. A 5 day forecast is displayed using a dynamic javascript card array. 
 
-![Day planner list](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Initial-load-screen.png?raw=true "Day planner list")
+![On load view](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Initial-load-screen.png?raw=true "on load view")
 <br>
 
-2. Each row is color coded. Pink denotes the current hour of the day, Teal represents hours left/upcoming. Gray represents time elapsed/passed.
+2. When a city is searched the string is stored in localStorage and a history list is appended to the document. 
 
-![Color blocks representing current, upcoming and past time rows](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/colorCodes.png?raw=true "Color blocks representing current, upcoming and past time rows")
+![History list](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/history-list.png?raw=true "History list")
 <br>
 
-3. The current date is displayed in the header of the page.
-
-![Current date](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/initialScreen.png?raw=true "Current date")
+3. The current date is displayed next to the current city along with a descriptive weather icon pulled from the API. 
 <br>
 
-4. Onload a pre-defined event is included so that the planner doesn't appear empty. 
+4. Weather for the current day is is displayed in the p tags within the main container. Data from the API is passed into the p tag with the correct ID corresponding to the data type. i.e Wind speed, Humidity, Temperature.
 
 ![Pre-defined event](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/initialScreen.png?raw=true "Pre-defined event")
 <br>
 
-5. To add an event to an hour clicking or focus on a row and type the name of the event into the input. 
+5. UV Index information is displayed in a semantically colored badge to represent low levels in green vs. high levels in red
 
 ![Add/update event](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/FocusAhead.png?raw=true "Add/update event")
 <br>
 
-6. Clicking save stores the event to localStorage. If focus is lost from the input prior to clicking save, the save button pulses orange until the user actions the button. The event will not be saved to localStorage if this is not actioned, and changes are lost. <br><br>A prevent default method is used to stop the default behavior of the input to clear the content on submit.
+6. A 5 day forcast is dynamically displayed in a list of 5 cards. Each card includes an icon, a date, temperature and humidity details. 
 
 ![Save changes](https://github.com/FAC-73/blue-monday-planner/blob/main/Assets/Images/saveUpdatePrompt.png?raw=true "Save changes")
 <br>
@@ -117,32 +115,34 @@ To get a local copy up and running follow these simple steps. You can also downl
 7. If the user leaves the page, refreshes or closes the browser. On subsequent reload the events are stored and shown when the page has loaded. 
 <br>
 
-8. To delete an event. Remove the text from the input and click save. Again, if focus is lost after removing text the save button will pulse to alert the user to commit the change. Otherwise it will not be saved in localStorage. 
+8. A final bonus item was to include the loremPicsum API for the background image. Where possible a location image is shown in the background to accompany the search term. 
 <br>
 
 
 #### HTML, CSS and Javascript & Jquery
-1. Index.html - Contains basic layout structure. Main planner content is contained in a div using the container class from bootstrap to leverage the responsive grid, with the ID 'dayEventContainer'. Here javascript and Jquery dynamically appends the divs for displaying the hour, input for events, and the save button. 
+1. Index.html - Contains basic layout structure. Main weather information is contained in a div using the container class from bootstrap and leverages the responsive grid. 
+<br>
+Javascript and Jquery dynamically append the divs and html elements for displaying the current weather details, cards and list items. 
 Most div's leverage Bootstrap CSS classes for responsive purposes.
 Semantic html is used for elements such as header, text elements.  
 
 - For improved accessibility additional descriptions for icons has been included. 
 
-2. styles.css - Contains layout, styling and media-queries and animations, as well as leveraging bootstrap CSS grid via the CDN. 
+2. styles.css - Contains layout, styling, and bootstrap CSS CDN is used to leveraging the responsive grid css.
 
 3. script.js - Contains variables, variable arrays and objects for declaring current time and hour. 
-- Makes use of the moment.js API for pulling time and date information. Date is displayed in the header of the document. Time is stored in an array and has variables set for determining the 9am - 5pm typical work day 
-- Functions for creating a row to display the time by hour. As well as add text into the input to create an even and to save it to local storage using JSON stringify method. 
-- A for loop for iterating through the hours 9am - 5pm (17:00) for creating the event array.
-- Two eventListeners one onClick event to store the event into localStorage through clicking the save button. The second an onChange event to determine if the input content has been modified and needs to trigger a changeClass method if changes are not saved. 
-- A function to change the color of the rows determined on whether the hour is current, upcoming or passed. Using if and else if statements based on the time stored in the variable 'hour
-- If, Else statements for validating whether there are saved events in localStorage on load of the document which are appended into the DOM elements. and to pass this data into an array
+- Makes use of the OpenWeather API for pulling current weather and UV index and 5-day forecast. Current date is displayed in the header of the document. 5-day forecast cards includes dates for each day. 
+- Functions for creating a rows to display search history. Javascript Fetch call to get data from the OpenWeather API when a search is submitted and return the JSON data. 
+- A function to store searches into localStorage using the JSON stringify method
+- A for loop for creating the card array for the 5-day forecast based on the start date
+-  Functions for adding JSON data from API into dynamically generated HTML elements using Jquery and appending to the document. 
+- Function to call for UV index data from API and append it to the document in the form of a badge along with with semantic colors representing low or high levels of UV. Adding a CSS class based on the value. 
+- Two eventListeners one submit event to trigger the search/api fetch call and to store the event into localStorage. The second an onClick event on the search history list that re-displays the weather information for that previous search. 
 
 
 #### Responsive view example - On mobile
 ![Responsive layout](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/Mobile1.png?raw=true "Responsive views")
 
-![Responsive layout](https://github.com/FAC-73/world-in-motion/blob/main/Assets/Images/MobileInput.PNG?raw=true "Responsive views")
 
 
 #### Pushing to GitHub
