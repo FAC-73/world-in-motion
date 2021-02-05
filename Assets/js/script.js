@@ -55,7 +55,7 @@ function getWeather(city) {
       return data.json();
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
 
       // Add data to html p tags
       $("#currentCity").text(data.name);
@@ -108,7 +108,7 @@ function getForecast(city) {
 
       // variable to hold data.list from api
       let results = data.list;
-      console.log(results)
+      // console.log(results)
 
       //Set start date and check against it
       //set end date endDate = startDate + 5
@@ -116,8 +116,8 @@ function getForecast(city) {
 
         let day = Number(results[i].dt_txt.split('-')[2].split(' ')[0]);
         let hour = results[i].dt_txt.split('-')[2].split(' ')[1];
-        console.log(day);
-        console.log(hour);
+        // console.log(day);
+        // console.log(hour);
 
         if (results[i].dt_txt.indexOf("12:00:00") !== -1) {
 
@@ -185,37 +185,34 @@ $(document).ready(function () {
   // Set text on load
   $("#temp").text(" - John Ruskin");
   $("#currentCity").text("There is no such thing as bad weather, only different kinds of good weather.");
-
-  // event listener on submission of form
-  document.querySelector("#search-form").addEventListener("submit", function (e) {
-    // prevent clearing of input after submission
-    e.preventDefault();
-
-    // create variable to store string from input
-    let cityFromInput = document.querySelector("#search-term").value;
-    // console.log(city)
-    getWeather(cityFromInput);
-    getForecast(cityFromInput);
-    
-    var citiesSearched = inputCity.value.trim();
-    if (citiesSearched === "") {
-      return;
-    }
-    // Function to add to history list
-    cityHistory.push(citiesSearched);
-    inputCity.value = "";
-
-    // Run functions for adding to localStorage & displaying search history
-    storecityHistory();
-    rendercityHistory();
-
-  });
-
   init()
+});
 
-      // Event handler for searching from search history list
-      $("li").on("click", function() {
-        getWeather($(this).text());
-      });
+// Event handler for searching from search history list
+$("#cities-list").on("click", 'li', function () {
+  getWeather($(this).text());
+});
 
+// event listener on submission of form
+document.querySelector("#search-form").addEventListener("submit", function (e) {
+  // prevent clearing of input after submission
+  e.preventDefault();
+
+  // create variable to store string from input
+  let cityFromInput = document.querySelector("#search-term").value;
+  getWeather(cityFromInput);
+  // getForecast(cityFromInput);
+
+  var citiesSearched = inputCity.value.trim();
+  if (citiesSearched === "") {
+    return;
+  }
+  // Function to add to history list
+  cityHistory.push(citiesSearched);
+  inputCity.value = "";
+
+  // Run functions for adding to localStorage & displaying search history
+  storecityHistory();
+  rendercityHistory();
+    
 });
